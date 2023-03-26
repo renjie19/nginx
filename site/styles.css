@@ -1,40 +1,138 @@
+html * {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 2rem;
-  background-color: hsl(250, 24%, 9%);
-  color: hsl(0, 0%, 100%);
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+.title {
+  margin: 0 20px;
 }
 
-h1 {
-  font-size: 48px;
-  margin: 1rem 0;
+.form-container {
+  margin: 8px;
 }
 
-.logo {
-  width: 8rem;
-  height: 8rem;
-  margin-bottom: 2rem;
+.form-container p,
+label {
+  font-size: 16px;
+  margin: 0;
+  font-weight: 600;
 }
 
-p {
-  line-height: 1.6;
+#rejectionFormContainer,
+.rejectedReason {
+  display: none;
 }
 
-a {
-  color: hsl(270, 70%, 65%);
-  text-decoration: none;
+button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #3d405b;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 17px;
+  padding: 16px;
+  width: 130px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
 }
 
-a:hover {
-  text-decoration: underline;
+button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button span:after {
+  content: "»";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
+}
+
+button:hover span {
+  padding-right: 15px;
+}
+
+button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.inputGroup {
+  font-family: "Segoe UI", sans-serif;
+  margin: 1em 0 1em 0;
+  /* max-width: 50%; */
+  position: relative;
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  font-size: 100%;
+  padding: 0.8em;
+  outline: none;
+  border: 2px solid rgb(200, 200, 200);
+  background-color: transparent;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.inputGroup label {
+  font-size: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.8em;
+  margin-left: 0.5em;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  color: rgb(100, 100, 100);
+}
+
+.inputGroup :is(input:focus, input:valid) ~ label,
+.inputGroup :is(textarea:focus, textarea:valid) ~ label {
+  transform: translateY(-50%) scale(0.9);
+  margin: 0em;
+  margin-left: 1.3em;
+  padding: 0.4em;
+  background-color: #e0e0e0;
+}
+
+.inputGroup :is(input:focus, input:valid),
+.inputGroup :is(textarea:focus, textarea:valid) {
+  border-color: rgb(100, 100, 100);
+}
+
+.card {
+  margin: 20px;
+  padding: 16px;
+  max-width: 50%;
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+}
+
+.radio-input {
+  display: inline-block;
+  border-radius: 8px;
+  background: #bebebe;
+  padding: 10px 40px;
+}
+
+.radio-input input {
+  display: none;
+}
+
+.radio-input:has(input:checked) {
+  background: #3d405b;
+  color: #fff;
 }

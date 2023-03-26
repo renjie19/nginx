@@ -1,37 +1,88 @@
 <!DOCTYPE html>
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>NGINX on Railway</title>
-    <meta name="description" content="Choo Choo!" />
 
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Work SHIT</title>
+</head>
 
-    <link rel="stylesheet" href="/styles.css?v=1.0" />
-  </head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">
+                <h1>Supervisor Referal</h1>
+            </div>
+        </div>
+        <div class="content card">
+            <form id="form-values">
+                <div class="inputGroup form-container">
+                    <input name="reason" type="text" id="reason" required="" autocomplete="off">
+                    <label for="reason">Reason for Pending</label>
+                </div>
+                <div class="form-container">
+                    <div>
+                        <p>Accepted? </p>
+                    </div>
+                    <label class="form-container radio-input" for="accepted">
+                        <span>Yes</span>
+                        <input name="isAccepted" type="radio" value="Yes" id="accepted" checked>
+                    </label>
+                    <label class="form-container radio-input" for="notAccepted">
+                        <span>No</span>
+                        <input name="isAccepted" type="radio" value="No" id="notAccepted">
+                    </label>
+                </div>
+                <div id="rejectionFormContainer" class=" inputGroup form-container">
+                    <textarea name="rejectionReason" rows="5" cols="50" id="rejectedReason"
+                        autocomplete="off"></textarea>
+                    <label for="rejectedReason">Reason</label>
+                </div>
+                <button>
+                    <span>COPY</span>
+                </button>
+            </form>
+        </div>
+    </div>
 
-  <body>
-    <main>
-      <img
-        src="https://railway.app/brand/logo-light.svg"
-        alt="Railway logo"
-        class="logo"
-      />
+    <script>
+        const notAccepted = document.getElementById('notAccepted');
+        const isAccepted = document.getElementById('accepted');
+        const reasonContainer = document.getElementById("rejectionFormContainer");
 
-      <h1>NGINX on Railway</h1>
+        isAccepted.addEventListener("change", (val) => {
+            const textArea = reasonContainer.querySelector("textarea");
+            reasonContainer.style.display = "none";
+            textArea.style.display = "none";
+            textArea.removeAttribute("required");
+        });
 
-      <p>
-        Choo Choo! This is an example of an NGINX static site running on
-        Railway.
-        <a
-          href="https://github.com/railwayapp/starters/tree/master/examples/nginx"
-          >View source</a
-        >.
-      </p>
-    </main>
+        notAccepted.addEventListener("change", (val) => {
+            const textArea = reasonContainer.querySelector("textarea");
+            reasonContainer.style.display = "block";
+            textArea.style.display = "block";
+            textArea.setAttribute("required", '');
+        });
+    </script>
+    <script>
+        var values = [];
+        const form = document.getElementById("form-values");
+        form.addEventListener("submit", (evt) => {
+            const formData = new FormData(form);
+            const valuesMap = new Map(formData.entries());
+            var message = `Reason for Pending: ${valuesMap.get('reason')}
+Accepted: ${valuesMap.get('isAccepted')}`;
 
-    <script src="/script.js"></script>
-  </body>
+            if (valuesMap.get('rejectionReason') !== '') {
+                message += `, ${valuesMap.get('rejectionReason')}`;
+            }
+
+            navigator.clipboard.writeText(message)
+                .catch(() => alert('Copy failed'));
+        });
+    </script>
+</body>
+
 </html>

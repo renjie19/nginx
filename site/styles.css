@@ -158,6 +158,9 @@ button:hover span:after {
   position: relative;
   cursor: pointer;
   font-size: 20px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -169,15 +172,15 @@ button:hover span:after {
   left: 0;
   height: 1.3em;
   width: 1.3em;
-  background-color: #e5e5e5;
+  background-color: #FFFFFF;
   border-radius: 50%;
-  border: 1px solid #222222;
+  outline: 1px solid #868686;
 }
 
 /* When the checkbox is checked, add a blue background */
 .checkbox-container input:checked ~ .checkmark {
   background-color: seagreen;
-  border: 0;
+  outline: 0;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -200,6 +203,8 @@ button:hover span:after {
   height: 0.5em;
   border: solid white;
   border-width: 0 0.15em 0.15em 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 

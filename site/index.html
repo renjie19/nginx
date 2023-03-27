@@ -13,7 +13,7 @@
     <div class="container">
         <div class="header">
             <div class="title">
-                <h1>Supervisor Referal</h1>
+                <h1>Supervisor Referral</h1>
             </div>
         </div>
         <div class="content card">
@@ -33,6 +33,13 @@
                     <label class="form-container radio-input" for="notAccepted">
                         <span>No</span>
                         <input name="isAccepted" type="radio" value="No" id="notAccepted">
+                    </label>
+                </div>
+                <div class="form-container">
+                    <label class="checkbox-container">
+                        <input checked="checked" type="checkbox" name="jobType">
+                        <div class="checkmark"></div>
+                        <span>Updated job type to AA?</span>
                     </label>
                 </div>
                 <div id="rejectionFormContainer" class=" inputGroup form-container">
@@ -70,13 +77,19 @@
         var values = [];
         const form = document.getElementById("form-values");
         form.addEventListener("submit", (evt) => {
+            evt.preventDefault();
             const formData = new FormData(form);
             const valuesMap = new Map(formData.entries());
-            var message = `Reason for Pending: ${valuesMap.get('reason')}
-Accepted: ${valuesMap.get('isAccepted')}`;
+            console.log(valuesMap);
+            var message = `• Reason of Pending: ${valuesMap.get('reason')}
+• Accepted: ${valuesMap.get('isAccepted')}`;
 
             if (valuesMap.get('rejectionReason') !== '') {
                 message += `, ${valuesMap.get('rejectionReason')}`;
+            }
+
+            if(valuesMap.get("jobType") !==  null) {
+                message += "\n\n• Update job type to AA."
             }
 
             navigator.clipboard.writeText(message)

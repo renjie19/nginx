@@ -177,6 +177,7 @@ button:hover span:after {
   outline: 1px solid #868686;
 }
 
+
 /* When the checkbox is checked, add a blue background */
 .checkbox-container input:checked ~ .checkmark {
   background-color: seagreen;
